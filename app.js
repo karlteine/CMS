@@ -1,10 +1,27 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const path = require('path');
+const hbs = require('express-handlebars');
 
+const app = express();
+
+// Set up Handlebars template engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+app.engine('hbs', hbs.engine({
+    extname: 'hbs',
+    defaultLayout: 'sign-up',
+    layoutsDir: __dirname + '/views/',
+}));
+
+// Serve static files from the public directory
+app.use(express.static('public'));
+
+// Route for the home page
 app.get('/', (req, res) => {
-    res.send('express test')
-})
+    res.render('index'); // Renders index.hbs
+});
 
-app.listen(3001, () => {
-    console.log("http://localhost:3001")
-})
+// Start the server
+app.listen(3025, () => {
+    console.log('App is started at http://localhost:3025');
+});
