@@ -4,22 +4,23 @@ const hbs = require('express-handlebars');
 
 const app = express();
 
+// Import routes
+const mainRoutes = require('./routes/mainRoutes.js');
+
 // Set up Handlebars template engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs.engine({
     extname: 'hbs',
-    defaultLayout: 'sign-up',
+    defaultLayout: 'index',
     layoutsDir: __dirname + '/views/',
 }));
 
 // Serve static files from the public directory
 app.use(express.static('public'));
 
-// Route for the home page
-app.get('/', (req, res) => {
-    res.render('index'); // Renders index.hbs
-});
+// Use the imported routes
+app.use(mainRoutes);
 
 // Start the server
 app.listen(3025, () => {
