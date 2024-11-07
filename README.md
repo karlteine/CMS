@@ -3,7 +3,7 @@
 1. Clone the Repository
 
    ```bash
-    git clone https://github.com/karlteine/MobileAppExample.git
+    git clone https://github.com/karlteine/CMS.git
    ```
 2. Go to the directory
 
