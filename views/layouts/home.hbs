@@ -20,27 +20,51 @@
     </header>
 
     <!-- Filter Section -->
-  <div class="filter">
-    <form method="GET" action="/">
-      <label for="category">Filter by Category:</label>
-      <select name="category" id="category">
-        <option value="">All</option>
-        <option value="development">Development</option>
-        <option value="design">Design</option>
-        <option value="business">Business</option>
-      </select>
 
-      <label for="price">Filter by Price:</label>
-      <select name="price" id="price">
-        <option value="">All</option>
-        <option value="free">Free</option>
-        <option value="paid">Paid</option>
-      </select>
+<div class="filter">
+  <form method="GET" action="/">
+    <label for="category">Filter by Category:</label>
+    <select name="category" id="category">
+      <option value="">All</option>
+      <option value="development" <%= category === 'development' ? 'selected' : '' %>>Development</option>
+      <option value="design" <%= category === 'design' ? 'selected' : '' %>>Design</option>
+      <option value="business" <%= category === 'business' ? 'selected' : '' %>>Business</option>
+    </select>
 
-      <button type="submit">Apply Filters</button>
-    </form>
-  </div>
+    <label for="price">Filter by Price:</label>
+    <select name="price" id="price">
+      <option value="">All</option>
+      <option value="free" <%= price === 'free' ? 'selected' : '' %>>Free</option>
+      <option value="paid" <%= price === 'paid' ? 'selected' : '' %>>Paid</option>
+    </select>
+
+    <label for="difficulty">Filter by Difficulty:</label>
+    <select name="difficulty" id="difficulty">
+      <option value="">All</option>
+      <option value="beginner" <%= difficulty === 'beginner' ? 'selected' : '' %>>Beginner</option>
+      <option value="intermediate" <%= difficulty === 'intermediate' ? 'selected' : '' %>>Intermediate</option>
+      <option value="advanced" <%= difficulty === 'advanced' ? 'selected' : '' %>>Advanced</option>
+    </select>
+
+    <button type="submit">Apply Filters</button>
+  </form>
   
+  <!-- Display applied filters as tags -->
+  <div id="applied-filters" class="applied-filters">
+  {{#if category}}
+    <div class="filter-tag">Category: {{category}} <span onclick="removeFilter('category')">x</span></div>
+  {{/if}}
+  {{#if price}}
+    <div class="filter-tag">Price: {{price}} <span onclick="removeFilter('price')">x</span></div>
+  {{/if}}
+  {{#if difficulty}}
+    <div class="filter-tag">Difficulty: {{difficulty}} <span onclick="removeFilter('difficulty')">x</span></div>
+  {{/if}}
+</div>
+</div>
+
+
+
     <main class="content">
       <h1>Available Courses</h1>
       <section class="course-grid">
@@ -52,5 +76,17 @@
 
     {{> footer}} <!-- Footer partial is included here -->
   </div>
+
+<!-- The script goes here, ideally before the closing body tag -->
+<script>
+  function removeFilter(filterType) {
+    // Reset the corresponding filter field
+    document.querySelector(`#${filterType}`).value = '';
+
+    // Submit the form to apply the change
+    document.querySelector('form').submit();
+  }
+</script>
+
 </body>
 </html>

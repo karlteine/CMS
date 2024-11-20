@@ -126,65 +126,91 @@ footer ul li a:hover {
   }
 }
 
-
+/* Style for the Filter Section */
 .filter {
-  background-color: #f9f9f9; /* Light background for the filter section */
+  background-color: #f9f9f9;
   padding: 20px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  margin: 20px 0; /* Margin for spacing */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+/* Styling for applied filter tags */
+.applied-filters {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.applied-filters .filter-tag {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.applied-filters .filter-tag span {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.applied-filters .filter-tag:hover {
+  background-color: #0056b3;
 }
 
 .filter form {
   display: flex;
-  flex-wrap: wrap; /* Allow the form elements to wrap on smaller screens */
-  gap: 15px; /* Space between form elements */
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .filter label {
   font-weight: bold;
   margin-bottom: 5px;
-  color: #333; /* Dark text for contrast */
+  color: #333;
 }
 
 .filter select {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc; /* Border to make it look like an input field */
+  border: 1px solid #ccc;
   border-radius: 5px;
-  width: 200px; /* Fixed width for dropdowns */
+  width: 200px;
   background-color: #fff;
   color: #333;
-  transition: border-color 0.3s ease;
 }
 
 .filter select:focus {
-  border-color: #007bff; /* Highlight border on focus */
-  outline: none; /* Remove default focus outline */
+  border-color: #007bff;
 }
 
 .filter button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007bff; /* Blue background */
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .filter button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
 }
 
 @media (max-width: 768px) {
   .filter form {
-    flex-direction: column; /* Stack form elements vertically on small screens */
-    align-items: flex-start; /* Align to the start */
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .filter select {
-    width: 100%; /* Make dropdowns full width on small screens */
+    width: 100%;
   }
 }
