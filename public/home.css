@@ -1,4 +1,4 @@
-html,body {
+html, body {
   font-family: Arial, sans-serif;
   height: 100%;
   margin: 0;
@@ -41,7 +41,7 @@ nav a {
 
 .course-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Auto-fill the grid with 300px min width */
   gap: 20px;
   padding: 20px;
 }
@@ -52,6 +52,7 @@ nav a {
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
+  width: 100%; /* Make sure the card takes the full width of its grid cell */
 }
 
 .course-card:hover {
@@ -72,54 +73,118 @@ nav a {
   color: green;
   font-weight: bold;
 }
+
 /* Footer Styles */
 footer {
-  background-color: #333;  /* Dark background for contrast */
-  color: white;  /* White text color */
-  padding: 20px 0;  /* Padding for top and bottom */
-  text-align: center;  /* Center-align the content */
-  font-size: 14px;  /* Smaller font size for the footer text */
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
 }
 
 footer .footer-content {
-  max-width: 1200px;  /* Maximum width for the footer content */
-  margin: 0 auto;  /* Center the content horizontally */
-  padding: 0 20px;  /* Padding on left and right */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 footer p {
-  margin: 0;  /* Remove default margin */
-  padding-bottom: 10px;  /* Space below the paragraph */
+  margin: 0;
+  padding-bottom: 10px;
 }
 
 footer ul {
-  list-style: none;  /* Remove bullets from the list */
+  list-style: none;
   padding: 0;
 }
 
 footer ul li {
-  display: inline-block;  /* Display list items inline */
-  margin: 0 15px;  /* Space between list items */
+  display: inline-block;
+  margin: 0 15px;
 }
 
 footer ul li a {
-  color: white;  /* White text for the links */
-  text-decoration: none;  /* Remove underline */
-  font-weight: bold;  /* Bold links */
-  transition: color 0.3s ease;  /* Smooth transition for hover effect */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 footer ul li a:hover {
-  color: #f39c12;  /* Change color on hover */
+  color: #f39c12;
 }
 
 @media (max-width: 768px) {
   footer ul {
-    text-align: center;  /* Center the list on smaller screens */
+    text-align: center;
   }
 
   footer ul li {
-    display: block;  /* Stack the list items vertically */
-    margin: 5px 0;  /* Vertical space between items */
+    display: block;
+    margin: 5px 0;
+  }
+}
+
+
+.filter {
+  background-color: #f9f9f9; /* Light background for the filter section */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 20px 0; /* Margin for spacing */
+}
+
+.filter form {
+  display: flex;
+  flex-wrap: wrap; /* Allow the form elements to wrap on smaller screens */
+  gap: 15px; /* Space between form elements */
+}
+
+.filter label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333; /* Dark text for contrast */
+}
+
+.filter select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc; /* Border to make it look like an input field */
+  border-radius: 5px;
+  width: 200px; /* Fixed width for dropdowns */
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.filter select:focus {
+  border-color: #007bff; /* Highlight border on focus */
+  outline: none; /* Remove default focus outline */
+}
+
+.filter button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff; /* Blue background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+@media (max-width: 768px) {
+  .filter form {
+    flex-direction: column; /* Stack form elements vertically on small screens */
+    align-items: flex-start; /* Align to the start */
+  }
+
+  .filter select {
+    width: 100%; /* Make dropdowns full width on small screens */
   }
 }

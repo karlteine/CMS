@@ -1,25 +1,29 @@
 [
-    {
-      "id": "1",
-      "title": "Learn JavaScript",
-      "description": "Master JavaScript with hands-on projects.",
-      "thumbnail": "/images/JavaScript.png",
-      "price": "Free"
-    },
-    {
-      "id": "2",
-      "title": "HTML & CSS for Beginners",
-      "description": "Learn how to build beautiful web pages.",
-      "thumbnail": "/images/HTML.jpeg",
-      "price": "$9.99"
-    },
-    {
-      "id": "3",
-      "title": "React for Intermediate Developers",
-      "description": "Take your React skills to the next level.",
-      "thumbnail": "/images/React.jpeg",
-      "price": "$19.99"
-    }
-  
-  ]
-  
+  {
+    "id": "1",
+    "title": "Learn JavaScript",
+    "description": "Master JavaScript with hands-on projects.",
+    "thumbnail": "/images/JavaScript.png",
+    "price": "Free", 
+    "category": "development",
+    "difficulty": "beginner"
+  },
+  {
+    "id": "2",
+    "title": "HTML & CSS for Beginners",
+    "description": "Learn how to build beautiful web pages.",
+    "thumbnail": "/images/HTML.jpeg",
+    "price": 9.99,
+    "category": "development",
+    "difficulty": "beginner"
+  },
+  {
+    "id": "3",
+    "title": "React for Intermediate Developers",
+    "description": "Take your React skills to the next level.",
+    "thumbnail": "/images/React.jpeg",
+    "price": 19.99,
+    "category": "development",
+    "difficulty": "intermediate"
+  }
+]

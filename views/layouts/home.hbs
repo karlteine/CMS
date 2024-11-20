@@ -19,6 +19,28 @@
       </nav>
     </header>
 
+    <!-- Filter Section -->
+  <div class="filter">
+    <form method="GET" action="/">
+      <label for="category">Filter by Category:</label>
+      <select name="category" id="category">
+        <option value="">All</option>
+        <option value="development">Development</option>
+        <option value="design">Design</option>
+        <option value="business">Business</option>
+      </select>
+
+      <label for="price">Filter by Price:</label>
+      <select name="price" id="price">
+        <option value="">All</option>
+        <option value="free">Free</option>
+        <option value="paid">Paid</option>
+      </select>
+
+      <button type="submit">Apply Filters</button>
+    </form>
+  </div>
+  
     <main class="content">
       <h1>Available Courses</h1>
       <section class="course-grid">

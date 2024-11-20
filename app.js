@@ -12,23 +12,51 @@ app.engine(
   'hbs',
   hbs.engine({
     extname: 'hbs',
-    defaultLayout: 'home', // Updated to use a 'main' layout
-    layoutsDir: path.join(__dirname, 'views/layouts'), // Layouts directory
-    partialsDir: path.join(__dirname, 'views/partials'), // Partials directory for reusable components
+    defaultLayout: 'home',
+    layoutsDir: path.join(__dirname, 'views/layouts'),
+    partialsDir: path.join(__dirname, 'views/partials'),
   })
 );
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Load courses data from a JSON file
+let courses = [];
+
+fs.readFile(path.join(__dirname, 'data', 'courses.json'), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading courses file:', err);
+      return;
+    }
+    courses = JSON.parse(data);
+  });
+
 // Route for the home page
 app.get('/', (req, res) => {
-  // Load courses from JSON
-  const coursesFile = path.join(__dirname, 'data', 'courses.json');
-  const courses = JSON.parse(fs.readFileSync(coursesFile, 'utf-8'));
+  const category = req.query.category;
+  const price = req.query.price;
+  const difficulty = req.query.difficulty;
 
-  // Render the index page with course data
-  res.render('index', { courses });
+  let filteredCourses = courses;
+
+  if (category) {
+    filteredCourses = filteredCourses.filter(course => course.category === category);
+  }
+
+  if (price) {
+    if (price === 'free') {
+      filteredCourses = filteredCourses.filter(course => course.price === "Free");
+    } else if (price === 'paid') {
+      filteredCourses = filteredCourses.filter(course => course.price > 0);
+    }
+  }
+
+  if (difficulty) {
+    filteredCourses = filteredCourses.filter(course => course.difficulty === difficulty);
+  }
+
+  res.render('index', { courses: filteredCourses });
 });
 
 // Start the server
