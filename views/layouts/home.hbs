@@ -76,10 +76,12 @@
   </div>
 
 <script>
-  function removeFilter(filterType) {
-    document.querySelector(`#${filterType}`).value = '';
-    document.querySelector('form').submit();
-  }
+  // Remove filter tag when clicked
+    function removeFilter(filterType) {
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.delete(filterType);
+      window.location.search = urlParams.toString(); // Reload page with updated query string
+    }
 </script>
 
 </body>

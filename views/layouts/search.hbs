@@ -31,15 +31,30 @@
     <div class="search-container">
       <form method="GET" action="/search">
         <input type="text" placeholder="Search..." name="query" value="{{query}}">
-        <button type="submit"><img src="/images/search-icon.png" alt="Search"></button>
+        <button type="submit" class="search-btn"><img src="/images/search-icon.png" alt="Search"></button>
 
         <!-- Toggle Filter Button -->
         <button type="button" id="filter-toggle-btn" class="filter-toggle-btn">
           <img src="/images/filter.png" alt="Filter" class="filter-icon" id="filter-icon">
         </button>
       </form>
+
+       <!-- Display applied filters as tags -->
+    <div id="applied-filters" class="applied-filters">
+        {{#if category}}
+            <div class="filter-tag">Category: {{category}} <span onclick="removeFilter('category')">x</span></div>
+        {{/if}}
+        {{#if price}}
+            <div class="filter-tag">Price: {{price}} <span onclick="removeFilter('price')">x</span></div>
+        {{/if}}
+        {{#if difficulty}}
+            <div class="filter-tag">Difficulty: {{difficulty}} <span onclick="removeFilter('difficulty')">x</span></div>
+        {{/if}}
     </div>
 
+    </div>
+
+    
     <!-- Hidden Filter Section -->
     <div id="filter-section" class="filter-section hidden">
       <form id="filter-form" method="GET" action="/">
@@ -70,19 +85,7 @@
           </form>
     </div>
 
-    <!-- Display applied filters as tags -->
-    <div id="applied-filters" class="applied-filters">
-        {{#if category}}
-            <div class="filter-tag">Category: {{category}} <span onclick="removeFilter('category')">x</span></div>
-        {{/if}}
-        {{#if price}}
-            <div class="filter-tag">Price: {{price}} <span onclick="removeFilter('price')">x</span></div>
-        {{/if}}
-        {{#if difficulty}}
-            <div class="filter-tag">Difficulty: {{difficulty}} <span onclick="removeFilter('difficulty')">x</span></div>
-        {{/if}}
-    </div>
-
+   
     <div class="content">
       <!-- Display All Courses or Filtered Courses -->
       <h1>Courses</h1>

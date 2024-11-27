@@ -11,7 +11,8 @@ html, body {
   .main-container {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; 
+    flex-grow: 1;
+     
   }
   
   .content {
@@ -59,6 +60,8 @@ html, body {
   .search-container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
     background-color: #f9f9f9;
   }
@@ -98,6 +101,14 @@ html, body {
     justify-content: center;
   }
   
+  /* Add the vertical line between the search button and filter button */
+
+.search-container button[type="submit"] {
+  border-right: 2px solid #ccc; /* Vertical line */
+  padding-right: 15px; /* Space between icon and line */
+  margin-right: 5px; /* Space between search button and filter button */
+}
+  
   .search-container button img {
     width: 20px;
     height: 20px;
@@ -106,6 +117,12 @@ html, body {
   
   .search-container button:hover img {
     transform: scale(1.1);
+  }
+  
+  /* Additional styling for filter button */
+  .filter-toggle-btn img {
+    width: 20px;
+    height: 20px;
   }
   
   /* Filter Section Styles */
@@ -137,9 +154,34 @@ html, body {
   box-sizing: border-box;
 }
 
-.filter-section select:focus {
-  border-color: #007bff;
-  outline: none;
+.applied-filters {
+  display: flex; /* Aligns the filter tags in a row */
+  flex-wrap: wrap; /* Allows the tags to wrap to the next line if necessary */
+  gap: 10px; /* Space between tags */
+  max-width: 100%; /* Ensures it takes up the full width of its container */
+  margin: 20px 0; /* Adds space above and below the applied filters */
+}
+
+/* Individual Filter Tags */
+.filter-tag {
+  display: flex; /* Use flexbox for the content inside the tag */
+  align-items: center; /* Vertically align text and the 'x' icon */
+  background-color: #007bff; /* Blue background for tags */
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  white-space: nowrap; /* Prevents the text from breaking into multiple lines */
+}
+
+.filter-tag span {
+  margin-left: 10px; /* Space between text and the 'x' icon */
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filter-tag:hover {
+  background-color: #0056b3; /* Darker blue when hovering over the tag */
 }
 
 .filter-section button {
@@ -184,26 +226,49 @@ html, body {
 }
 
   /* Course Grid Styles */
+
+/* Course Grid Styles */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatically adjust based on screen size */
+  gap: 20px; /* Fixed gap between cards */
+  padding: 20px;
+  justify-items: center; /* Ensures items align properly */
+}
+
+/* Ensure each card keeps a fixed width */
+.course-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 0 auto; /* Center the cards within their grid cells */
+}
+
+/* Responsive for medium screens */
+@media (max-width: 1024px) {
   .course-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
   }
-  
-  .course-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* For smaller screens, set to 1 column */
+@media (max-width: 600px) {
+  .course-grid {
+    grid-template-columns: 1fr; /* 1 column for small screens */
   }
+}
+
+
   
   .course-card:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
+
+  
   
   .thumbnail {
     width: 100%;
@@ -284,7 +349,8 @@ html, body {
     nav .nav-links li {
       margin: 10px 0;
     }
-  
+
+
     .search-container form {
       width: 100%;
       max-width: none;
