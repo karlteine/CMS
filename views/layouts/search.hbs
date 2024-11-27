@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Courses</title>
+  <link rel="stylesheet" href="search.css">
+  <style>
+    /* Add this CSS to hide the filter section initially */
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">VideoCourses</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/search">Search</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="main-container">  
+
+    <!-- Search and Filter Section -->
+    <div class="search-container">
+      <form method="GET" action="/search">
+        <input type="text" placeholder="Search..." name="query" value="{{query}}">
+        <button type="submit"><img src="/images/search-icon.png" alt="Search"></button>
+
+        <!-- Toggle Filter Button -->
+        <button type="button" id="filter-toggle-btn" class="filter-toggle-btn">
+          <img src="/images/filter.png" alt="Filter" class="filter-icon" id="filter-icon">
+        </button>
+      </form>
+    </div>
+
+    <!-- Hidden Filter Section -->
+    <div id="filter-section" class="filter-section hidden">
+      <form id="filter-form" method="GET" action="/">
+            <label for="category">Filter by Category:</label>
+            <select name="category" id="category">
+              <option value="">All</option>
+              <option value="development" <%= category === 'development' ? 'selected' : '' %>>Development</option>
+              <option value="design" <%= category === 'design' ? 'selected' : '' %>>Design</option>
+              <option value="business" <%= category === 'business' ? 'selected' : '' %>>Business</option>
+            </select>
+
+            <label for="price">Filter by Price:</label>
+            <select name="price" id="price">
+              <option value="">All</option>
+              <option value="free" <%= price === 'free' ? 'selected' : '' %>>Free</option>
+              <option value="paid" <%= price === 'paid' ? 'selected' : '' %>>Paid</option>
+            </select>
+
+            <label for="difficulty">Filter by Difficulty:</label>
+            <select name="difficulty" id="difficulty">
+              <option value="">All</option>
+              <option value="beginner" <%= difficulty === 'beginner' ? 'selected' : '' %>>Beginner</option>
+              <option value="intermediate" <%= difficulty === 'intermediate' ? 'selected' : '' %>>Intermediate</option>
+              <option value="advanced" <%= difficulty === 'advanced' ? 'selected' : '' %>>Advanced</option>
+            </select>
+
+            <button type="submit">Apply Filters</button>
+          </form>
+    </div>
+
+    <!-- Display applied filters as tags -->
+    <div id="applied-filters" class="applied-filters">
+        {{#if category}}
+            <div class="filter-tag">Category: {{category}} <span onclick="removeFilter('category')">x</span></div>
+        {{/if}}
+        {{#if price}}
+            <div class="filter-tag">Price: {{price}} <span onclick="removeFilter('price')">x</span></div>
+        {{/if}}
+        {{#if difficulty}}
+            <div class="filter-tag">Difficulty: {{difficulty}} <span onclick="removeFilter('difficulty')">x</span></div>
+        {{/if}}
+    </div>
+
+    <div class="content">
+      <!-- Display All Courses or Filtered Courses -->
+      <h1>Courses</h1>
+      <section class="course-grid">
+        {{#each courses}}
+          {{> courseCard this}} <!-- Render courseCard partial for each course -->
+        {{else}}
+          <p>No courses found.</p>
+        {{/each}}
+      </section>
+    </div>
+    {{> footer}}
+  </div>
+
+  <script>
+    // Get the filter toggle button and filter section
+    const filterToggleButton = document.getElementById('filter-toggle-btn');
+    const filterSection = document.getElementById('filter-section');
+    const filterIcon = document.getElementById('filter-icon');
+
+    // Add click event to the filter toggle button to show or hide filter section
+    filterToggleButton.addEventListener('click', function() {
+      filterSection.classList.toggle('hidden'); // Toggle visibility of the filter section
+      filterIcon.src = filterSection.classList.contains('hidden') ? '/images/filter.png' : '/images/filter.png'; // Change icon based on filter section visibility
+    });
+
+    // Remove filter tag when clicked
+    function removeFilter(filterType) {
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.delete(filterType);
+      window.location.search = urlParams.toString(); // Reload page with updated query string
+    }
+  </script>
+</body>
+</html>

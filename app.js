@@ -12,7 +12,7 @@ app.engine(
   'hbs',
   hbs.engine({
     extname: 'hbs',
-    defaultLayout: 'home',
+    defaultLayout: 'search',
     layoutsDir: path.join(__dirname, 'views/layouts'),
     partialsDir: path.join(__dirname, 'views/partials'),
   })
@@ -64,6 +64,22 @@ app.get('/', (req, res) => {
       difficulty 
     });
   });
+
+  // Route for the search page
+app.get('/search', (req, res) => {
+    const query = req.query.query || '';  // Default to empty string if no query is provided
+  
+    // Filter courses by name (case insensitive)
+    const filteredCourses = courses.filter(course => {
+      return course.title.toLowerCase().includes(query.toLowerCase());
+    });
+  
+    res.render('search', { 
+      courses: filteredCourses, 
+      query: query  // Pass the query back to the view so the search bar is pre-filled
+    });
+  });
+  
   
 // Start the server
 app.listen(3025, () => {
