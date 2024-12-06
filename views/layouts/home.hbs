@@ -62,7 +62,12 @@
         </div>
       </div>
 
-
+    <h1>User List</h1>
+  <ul>
+    {{#each users}}
+      <li>{{name}} - {{email}}</li>
+    {{/each}}
+  </ul>
 
     <main class="content">
       <h1>Available Courses</h1>
