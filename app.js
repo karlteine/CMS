@@ -5,6 +5,9 @@ const fs = require('fs');
 
 const app = express();
 
+// Import routes
+const mainRoutes = require('./routes/mainRoutes.js');
+
 // Set up Handlebars template engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -12,7 +15,8 @@ app.engine(
   'hbs',
   hbs.engine({
     extname: 'hbs',
-    defaultLayout: 'search',
+
+    defaultLayout: 'index',
     layoutsDir: path.join(__dirname, 'views/layouts'),
     partialsDir: path.join(__dirname, 'views/partials'),
   })
@@ -31,6 +35,7 @@ fs.readFile(path.join(__dirname, 'data', 'courses.json'), 'utf8', (err, data) =>
     }
     courses = JSON.parse(data);
   });
+
 
 // Route for the home page
 app.get('/', (req, res) => {
@@ -64,6 +69,9 @@ app.get('/', (req, res) => {
       difficulty 
     });
   });
+// Use the imported routes
+app.use(mainRoutes);
+
 
   // Route for the search page
 app.get('/search', (req, res) => {
