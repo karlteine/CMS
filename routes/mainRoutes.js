@@ -9,15 +9,15 @@ router.get('/', (req, res) => {
 
 // Render sign-up, student and instructor logins
 router.get('/signup', (req, res) => {
-    res.render('sign-up', { layout: false });
+    res.render('layouts/sign-up', { layout: false });
 });
 
 router.get('/student-login', (req, res) => {
-    res.render('student_login', { layout: false });
+    res.render('layouts/student_login', { layout: false });
 })
 
 router.get('/instructor-login', (req, res) => {
-    res.render('instructor_login', { layout: false });
+    res.render('layouts/instructor_login', { layout: false });
 })
 
 module.exports = router;
