@@ -19,5 +19,8 @@ router.get('/student-login', (req, res) => {
 router.get('/instructor-login', (req, res) => {
     res.render('layouts/instructor_login', { layout: false });
 })
+router.get('/home', (req, res) => {
+    res.render('layouts/home', { layout: false }); // Renders the `home.hbs` view
+});
 
 module.exports = router;
