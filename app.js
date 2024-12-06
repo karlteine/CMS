@@ -41,27 +41,7 @@ fs.readFile(path.join(__dirname, 'data', 'courses.json'), 'utf8', (err, data) =>
   courses = JSON.parse(data);
 });
 
-// Route for the home page
-app.get('/', (req, res) => {
-  const { category, price, difficulty } = req.query;
-  let filteredCourses = courses;
 
-  if (category) {
-    filteredCourses = filteredCourses.filter(course => course.category === category);
-  }
-  if (price) {
-    if (price === 'free') {
-      filteredCourses = filteredCourses.filter(course => course.price === "Free");
-    } else if (price === 'paid') {
-      filteredCourses = filteredCourses.filter(course => course.price > 0);
-    }
-  }
-  if (difficulty) {
-    filteredCourses = filteredCourses.filter(course => course.difficulty === difficulty);
-  }
-
-  res.render('index', { courses: filteredCourses, category, price, difficulty });
-});
 
 // Route for the search page
 app.get('/search', (req, res) => {

@@ -1,6 +1,7 @@
 // routes/mainRoutes.js
 const express = require('express');
 const router = express.Router();
+const { getFilteredCourses } = require('../controllers/courseController');
 
 // Render the home page
 router.get('/', (req, res) => {
@@ -19,8 +20,7 @@ router.get('/student-login', (req, res) => {
 router.get('/instructor-login', (req, res) => {
     res.render('layouts/instructor_login', { layout: false });
 })
-router.get('/home', (req, res) => {
-    res.render('layouts/home', { layout: false }); // Renders the `home.hbs` view
-});
+
+router.get('/home', getFilteredCourses);
 
 module.exports = router;

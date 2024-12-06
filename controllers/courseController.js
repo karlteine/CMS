@@ -24,7 +24,7 @@ const getFilteredCourses = (req, res) => {
   }
 
   // Render the view with filtered courses and query parameters
-  res.render('layouts/home', { courses: filteredCourses, category, price, difficulty });
+  res.render('layouts/home', { courses: filteredCourses, category, price, difficulty, layout: false  });
 };
 
 module.exports = { getFilteredCourses };
