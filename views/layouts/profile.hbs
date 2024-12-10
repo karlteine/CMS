@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link rel="stylesheet" href="/profile.css">
+</head>
+<body>
+  <div class="main-container">
+    <header>
+      <nav>
+        <div class="logo"><a href="/">VideoCourses</a></div>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/profile" class="active">Profile</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="profile-header">
+        <h1>Welcome, {{sessionUser.name}}!</h1>
+        <p>Role: {{sessionUser.role}}</p>
+        <p>Email: {{sessionUser.email}}</p>
+      </section>
+
+      <section class="profile-actions">
+        <h2>Manage Your Account</h2>
+        <ul>
+          <li><a href="/profile/edit">Edit Profile</a></li>
+          <li><a href="/profile/change-password">Change Password</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 VideoCourses. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  .main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  header .logo a {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+  }
+  
+  .nav-links .active {
+    background-color: #ddd;
+    border-radius: 5px;
+  }
+  
+  .profile-header,
+  .profile-actions {
+    margin: 20px 0;
+  }
+  
+  .profile-header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-actions ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .profile-actions ul li {
+    margin-bottom: 10px;
+  }
+  
+  .edit-profile form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .edit-profile input,
+  .edit-profile button {
+    padding: 10px;
+    font-size: 16px;
+  }
+  

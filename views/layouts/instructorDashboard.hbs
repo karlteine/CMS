@@ -65,7 +65,7 @@
     <h1>Current user</h1>
       <div class="current-user">
       {{#if sessionUser}}
-        <p>Welcome, {{sessionUser.name}}!</p>
+        <p>Welcome instructor, {{sessionUser.name}}!</p>
         <p>Email: {{sessionUser.email}}</p>
         <p>Role: {{sessionUser.role}}</p>
       {{else}}
@@ -85,6 +85,7 @@
   </div>
 
 <script>
+  console.log(courses)
   // Remove filter tag when clicked
     function removeFilter(filterType) {
       const urlParams = new URLSearchParams(window.location.search);

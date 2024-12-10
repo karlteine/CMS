@@ -1,10 +1,12 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const hbs = require('express-handlebars');
 const fs = require('fs');
-const connectToMongoDB = require('./mongodb/mongodb.connect.js'); // MongoDB connection
-const mainRoutes = require('./routes/mainRoutes.js'); // Main routes
-const userRoutes = require('./routes/userRoutes.js'); // User routes
+const connectToMongoDB = require('./mongodb/mongodb.connect.js'); 
+const mainRoutes = require('./routes/mainRoutes.js'); 
+const userRoutes = require('./routes/userRoutes.js'); 
+const profileRoutes = require('./routes/profileRoutes.js')
 
 const app = express();
 
@@ -27,19 +29,20 @@ app.engine(
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Configure express-session
+app.use(
+  session({
+    secret: 'your-secret-key', // Replace with a strong secret key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Use `true` if using HTTPS
+  })
+);
+
 // Middleware to parse JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Load courses data from a JSON file
-let courses = [];
-fs.readFile(path.join(__dirname, 'data', 'courses.json'), 'utf8', (err, data) => {
-  if (err) {
-    console.error('Error reading courses file:', err);
-    return;
-  }
-  courses = JSON.parse(data);
-});
 
 
 
@@ -56,6 +59,7 @@ app.get('/search', (req, res) => {
 // Use imported routes
 app.use(mainRoutes);
 app.use(userRoutes); // Add user-specific routes
+app.use(profileRoutes);
 
 // Start the server
 app.listen(3025, () => {

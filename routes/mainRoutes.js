@@ -13,14 +13,11 @@ router.get('/signup', (req, res) => {
     res.render('layouts/sign-up', { layout: false });
 });
 
-router.get('/student-login', (req, res) => {
-    res.render('layouts/student_login', { layout: false });
-})
-
-router.get('/instructor-login', (req, res) => {
-    res.render('layouts/instructor_login', { layout: false });
-})
 
 router.get('/home', getFilteredCourses);
+
+router.get('/contact', (req, res) => {
+    res.render('layouts/contact', { layout: false });
+})
 
 module.exports = router;
