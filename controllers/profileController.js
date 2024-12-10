@@ -77,7 +77,6 @@ const profileController = {
 
         // Verify current password
         const isMatch = await bcrypt.compare(currentPassword, user.password);
-        console.log("Current stored password hash:", user.password);
         if (!isMatch) {
             return res.status(400).send("Current password is incorrect");
         }
@@ -87,9 +86,6 @@ const profileController = {
         await user.save();
 
         res.send("Password updated successfully");
-        // Re-fetch the user to check if the password has been updated
-        const updatedUser = await User.findById(userId);
-        console.log("Updated password hash:", updatedUser.password);
     } catch (error) {
         console.error("Error changing password:", error);
         res.status(500).send("Internal Server Error");
