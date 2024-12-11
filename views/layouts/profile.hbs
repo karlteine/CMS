@@ -7,38 +7,37 @@
   <link rel="stylesheet" href="/profile.css">
 </head>
 <body>
-  <div class="main-container">
-    <header>
-      <nav>
-        <div class="logo"><a href="/">VideoCourses</a></div>
-        <ul class="nav-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/profile" class="active">Profile</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo"><a href="/">VideoCourses</a></div>
+    <ul class="nav-links">
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/profile">Profile</a></li>
+    </ul>
+  </nav>
 
-    <main>
-      <section class="profile-header">
-        <h1>Welcome, {{sessionUser.name}}!</h1>
-        <p>Role: {{sessionUser.role}}</p>
-        <p>Email: {{sessionUser.email}}</p>
-      </section>
+  <div class="main-container" style="padding-top: 80px;">
+    <!-- Hero Section -->
+    <section class="profile-hero">
+      <h1>Welcome, {{sessionUser.name}}!</h1>
+      <p>Role: {{sessionUser.role}}</p>
+      <p>Email: {{sessionUser.email}}</p>
+    </section>
 
-      <section class="profile-actions">
-        <h2>Manage Your Account</h2>
-        <ul>
-          <li><a href="/profile/edit">Edit Profile</a></li>
-          <li><a href="/profile/change-password">Change Password</a></li>
-          <li><a href="/logout">Logout</a></li>
-        </ul>
-      </section>
-    </main>
-
-    <footer>
-      <p>&copy; 2024 VideoCourses. All rights reserved.</p>
-    </footer>
+    <!-- Profile Actions Section -->
+    <section class="profile-actions">
+      <h2>Manage Your Account</h2>
+      <ul>
+        <li><a href="/profile/edit">Edit Profile</a></li>
+        <li><a href="/profile/change-password">Change Password</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </section>
   </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 VideoCourses. All rights reserved.</p>
+  </footer>
 </body>
 </html>
