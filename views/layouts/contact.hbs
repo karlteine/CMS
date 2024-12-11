@@ -7,60 +7,75 @@
   <link rel="stylesheet" href="/contact.css">
 </head>
 <body>
-  <div class="main-container">
-    <header>
-      <nav>
-        <div class="logo"><a href="/">VideoCourses</a></div>
-        <ul class="nav-links">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact" class="active">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo"><a href="/">VideoCourses</a></div>
+    <ul class="nav-links">
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/profile">Profile</a></li>
+    </ul>
+  </nav>
 
-    <main>
-      <section class="contact-hero">
-        <h1>Contact Us</h1>
-        <p>Have questions or need help? Reach out to us using the form below or visit us at our office!</p>
-      </section>
+  <div class="main-container" style="padding-top: 80px;">
+    <!-- Hero Section -->
+    <section class="contact-hero">
+      <h1>Contact Us</h1>
+      <p>Have questions or need help? Reach out to us using the form below or visit us at our office!</p>
+    </section>
 
-      <section class="contact-form">
-        <h2>Send Us a Message</h2>
-        <form action="/contact" method="POST">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
-          </div>
-          <button type="submit">Send Message</button>
-        </form>
-      </section>
+    <!-- Contact Form Section -->
+    <section class="contact-form">
+      <h2>Send Us a Message</h2>
+      <form id="contactForm" action="/contact" method="POST">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
 
-      <section class="contact-info">
-        <h2>Visit Us</h2>
-        <p>Our office is open Monday to Friday, 9 AM to 5 PM.</p>
-        <address>
-          123 VideoCourses Street, Suite 456<br>
-          Education City, EC 78910<br>
-          Phone: +123 456 7890<br>
-          Email: <a href="mailto:support@videocourses.com">support@videocourses.com</a>
-        </address>
-      </section>
-
-      
-    </main>
-
-    <footer>
-      <p>&copy; 2024 VideoCourses. All rights reserved.</p>
-    </footer>
+    <!-- Contact Information Section -->
+    <section class="contact-info">
+      <h2>Visit Us</h2>
+      <p>Our office is open Monday to Friday, 9 AM to 5 PM.</p>
+      <address>
+        123 VideoCourses Street, Suite 456<br>
+        Education City, EC 78910<br>
+        Phone: +123 456 7890<br>
+        Email: <a href="mailto:support@videocourses.com">support@videocourses.com</a>
+      </address>
+    </section>
   </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 VideoCourses. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript for Form Handling -->
+  <script>
+    // Get the form element
+    const form = document.getElementById('contactForm');
+
+    // Add a submit event listener to the form
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Show the "Message Sent" popup
+      alert('Message Sent! Thank you for contacting us.');
+
+      // Optionally, you can clear the form
+      form.reset();
+    });
+  </script>
 </body>
 </html>
