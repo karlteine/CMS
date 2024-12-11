@@ -7,6 +7,7 @@ const connectToMongoDB = require('./mongodb/mongodb.connect.js');
 const mainRoutes = require('./routes/mainRoutes.js'); 
 const userRoutes = require('./routes/userRoutes.js'); 
 const profileRoutes = require('./routes/profileRoutes.js')
+const createCourseRoutes = require('./routes/createCourseRoutes.js')
 
 const app = express();
 
@@ -60,6 +61,7 @@ app.get('/search', (req, res) => {
 app.use(mainRoutes);
 app.use(userRoutes); // Add user-specific routes
 app.use(profileRoutes);
+app.use(createCourseRoutes)
 
 // Start the server
 app.listen(3025, () => {
