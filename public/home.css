@@ -9,6 +9,7 @@ html, body {
   display: flex;           /* Use flexbox layout */
   flex-direction: column;  /* Arrange children in a vertical direction */
   min-height: 100%;        /* Ensure the container takes at least the full height of the viewport */
+  padding-top: 20px;
 }
 
 .content {
@@ -21,6 +22,9 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 }
 
 nav .nav-links {
@@ -214,3 +218,53 @@ footer ul li a:hover {
     width: 100%;
   }
 }
+
+
+  /* Basic sidebar styling */
+  .sidebar {
+    width: 250px;
+    position: fixed;
+    left: 0;
+    top: 25;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding-top: 20px;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar h3 {
+    padding-left: 15px;
+    font-size: 1.5em;
+    color: #333;
+  }
+
+  .sidebar a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+  }
+
+  .sidebar a:hover  {
+    background-color: #ddd;
+  }
+
+  
+  
+  /* Adjusting the content area to accommodate the sidebar */
+  .main-container {
+    margin-left: 250px;  /* Creates space for the sidebar */
+    padding-left: 20px;  /* Adjust for padding */
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Styling for main content */
+  .content {
+    padding-left: 20px;
+  }
