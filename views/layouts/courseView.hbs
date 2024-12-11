@@ -7,22 +7,80 @@
   <link rel="stylesheet" href="/courseView.css"> <!-- Link to a custom stylesheet -->
 </head>
 <body>
-  <div class="course-container">
-    <!-- Course Thumbnail -->
-    <div class="thumbnail">
-      <img src="{{course.thumbnailUrl}}" alt="{{course.title}}" />
+  <!-- Fixed Navbar -->
+  <header>
+     {{>navbar}}
+  </header>
+
+  <!-- Main container with padding to avoid overlap with the navbar -->
+  <div class="main-container">
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h3>
+        {{#if sessionUser}}
+          {{#if (eq sessionUser.role 'instructor')}}
+            Instructor Dashboard
+          {{else}}
+            Student Dashboard
+          {{/if}}
+        {{else}}
+          Guest Dashboard
+        {{/if}}
+      </h3>
+      <a href="/my-courses">
+        <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
+      </a>
+      {{#if sessionUser}}
+        {{#if (eq sessionUser.role 'instructor')}}
+          <a href="/course-creation">
+            <img src="/images/icons/create.png" alt="Create Course Icon" class="icon"> Create Course
+          </a>
+        {{/if}}
+      {{/if}}
+      <a href="/profile">
+        <img src="/images/icons/profile.png" alt="Profile Icon" class="icon"> Profile
+      </a>
+      <a href="/logout">
+        <img src="/images/icons/logout.png" alt="Logout Icon" class="icon"> Logout
+      </a>
     </div>
 
-    <!-- Course Details -->
-    <div class="course-details">
-      <h1 class="course-title">{{course.title}}</h1>
-      <p class="course-description">{{course.description}}</p>
-      <p class="course-instructor">Instructor: {{instructor.name}}</p>
+    <!-- Main content area (course details) -->
+    <div class="content">
+      <!-- Back Button -->
+      <a href="/home" class="back-btn">
+        <img src="/images/icons/back.png" alt="Back Icon" class="icon"> Back to My Courses
+      </a>
 
-      <!-- Enroll Button -->
-      <form action="/enroll/{{course._id}}" method="POST">
-        <button type="submit" class="enroll-btn">Enroll Now</button>
-      </form>
+      <div class="course-container">
+        <!-- Course Thumbnail -->
+        <div class="thumbnail">
+          <img src="{{course.thumbnailUrl}}" alt="{{course.title}}" />
+        </div>
+
+        <!-- Course Details -->
+        <div class="course-info">
+          <h1 class="course-title">{{course.title}}</h1>
+
+          <!-- Course Details Row (Instructor + Enroll Button) -->
+          <div class="course-details-row">
+            <p class="course-instructor">Instructor: {{instructor.name}}</p>
+
+            <!-- Enroll Button -->
+            <form action="/enroll/{{course._id}}" method="POST">
+              <button type="submit" class="enroll-btn">Enroll Now</button>
+            </form>
+          </div>
+        </div>
+ 
+      </div>
+       <!-- Full-width Course Description -->
+        <div class="description-container">
+          <h2>Description</h2>
+          <p>{{course.description}}</p>
+        </div>
+
     </div>
   </div>
 </body>

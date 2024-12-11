@@ -9,22 +9,7 @@
 <body>
   <!-- Header (Navbar) -->
   <header>
-    <nav>
-      <div class="logo">{{#if sessionUser}}
-        {{#if (eq sessionUser.role 'student')}}
-          <a href="/student/dashboard">VideoCourses - Student</a> <!-- Link for students -->
-        {{/if}}
-        {{#if (eq sessionUser.role 'instructor')}}
-          <a href="/instructor/dashboard">VideoCourses - Instructor</a> <!-- Link for instructors -->
-        {{/if}}
-      {{else}}
-        <a href="/home">VideoCourses - Guest</a> <!-- Default link for guests -->
-      {{/if}}</div>
-      <ul class="nav-links">
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/profile">Profile</a></li>
-      </ul>
-    </nav>
+    {{>navbar}}
   </header>
 
   <div class="main-container">
@@ -60,8 +45,23 @@
     </div>
 
 
+    
+    <h1>Current user</h1>
+    <div class="current-user">
+      {{#if sessionUser}}
+        <p>Welcome instructor, {{sessionUser.name}}!</p>
+        <p>Email: {{sessionUser.email}}</p>
+        <p>Role: {{sessionUser.role}}</p>
+      {{else}}
+        <p>Welcome, Guest! Please <a href="/login">log in</a>.</p>
+      {{/if}}
+    </div>
+    
+
+      <h1>Available Courses</h1>
     <!-- Filter Section -->
     <div class="filter">
+    
       <form method="GET" action="/home">
         <label for="category">Filter by Category:</label>
         <select name="category" id="category">
@@ -103,19 +103,7 @@
       </div>
     </div>
 
-    <h1>Current user</h1>
-    <div class="current-user">
-      {{#if sessionUser}}
-        <p>Welcome instructor, {{sessionUser.name}}!</p>
-        <p>Email: {{sessionUser.email}}</p>
-        <p>Role: {{sessionUser.role}}</p>
-      {{else}}
-        <p>Welcome, Guest! Please <a href="/login">log in</a>.</p>
-      {{/if}}
-    </div>
-
     <main class="content">
-      <h1>Available Courses</h1>
       <section class="course-grid">
         {{#each courses}}
           {{> courseCard this}} <!-- Render courseCard partial for each course -->
