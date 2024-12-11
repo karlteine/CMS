@@ -7,26 +7,38 @@
   <link rel="stylesheet" href="/createCourse.css">
 </head>
 <body>
-  <!-- Header (Navbar) -->
-  <header>
-    <nav>
+  
+    <nav
       <div class="logo"><a href="/">VideoCourses</a></div>
       <ul class="nav-links">
         <li><a href="/contact">Contact</a></li>
         <li><a href="/profile">Profile</a></li>
       </ul>
     </nav>
-  </header>
+  
 
   <div class="main-container">
     <!-- Sidebar -->
     <div class="sidebar">
-      <h3>Instructor Dashboard</h3>
-      <a href="/instructor-dashboard">Dashboard</a>
-      <a href="/my-courses">My Courses</a>
-      <a href="/course-creation" class="active">Create Course</a>
-      <a href="/profile">Profile</a>
-      <a href="/logout">Logout</a>
+      <h3>
+            Instructor Dashboard
+      </h3>
+      <a href="/my-courses">
+        <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
+      </a>
+      {{#if sessionUser}}
+        {{#if (eq sessionUser.role 'instructor')}}
+          <a href="/course-creation">
+            <img src="/images/icons/create.png" alt="Create Course Icon" class="icon"> Create Course
+          </a>
+        {{/if}}
+      {{/if}}
+      <a href="/profile">
+        <img src="/images/icons/profile.png" alt="Profile Icon" class="icon"> Profile
+      </a>
+      <a href="/logout">
+        <img src="/images/icons/logout.png" alt="Logout Icon" class="icon"> Logout
+      </a>
     </div>
 
     <!-- Main Content -->
