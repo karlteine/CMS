@@ -20,27 +20,36 @@
 
   <div class="main-container">
     <!-- Sidebar -->
-    <!-- Sidebar -->
-<div class="sidebar">
-  <h3>{{#if sessionUser}} 
-        {{#if (eq sessionUser.role 'instructor')}} 
-          Instructor Dashboard 
+    <div class="sidebar">
+      <h3>
+        {{#if sessionUser}}
+          {{#if (eq sessionUser.role 'instructor')}}
+            Instructor Dashboard
+          {{else}}
+            Student Dashboard
+          {{/if}}
         {{else}}
-          Student Dashboard 
+          Guest Dashboard
         {{/if}}
-      {{else}} 
-        Guest Dashboard 
+      </h3>
+      <a href="/my-courses">
+        <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
+      </a>
+      {{#if sessionUser}}
+        {{#if (eq sessionUser.role 'instructor')}}
+          <a href="/course-creation">
+            <img src="/images/icons/create.png" alt="Create Course Icon" class="icon"> Create Course
+          </a>
+        {{/if}}
       {{/if}}
-  </h3>
-  <a href="/my-courses">My Courses</a>
-  {{#if sessionUser}}
-    {{#if (eq sessionUser.role 'instructor')}}
-      <a href="/course-creation">Create Course</a>
-    {{/if}}
-  {{/if}}
-  <a href="/profile">Profile</a>
-  <a href="/logout">Logout</a>
-</div>
+      <a href="/profile">
+        <img src="/images/icons/profile.png" alt="Profile Icon" class="icon"> Profile
+      </a>
+      <a href="/logout">
+        <img src="/images/icons/logout.png" alt="Logout Icon" class="icon"> Logout
+      </a>
+    </div>
+
 
     <!-- Filter Section -->
     <div class="filter">

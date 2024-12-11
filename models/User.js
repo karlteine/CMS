@@ -23,6 +23,12 @@ const userSchema = new mongoose.Schema({
         enum: ["student", "instructor"],
         required: true,
     },
+    registered_courses: [
+        {
+            course_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
+            registration_date: { type: Date, default: Date.now },
+        },
+    ],
 }, { timestamps: true });
 
 // Hash password before saving

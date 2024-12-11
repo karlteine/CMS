@@ -251,6 +251,11 @@ footer ul li a:hover {
     background-color: #ddd;
   }
 
+  .sidebar a img.icon {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px; /* Adjust as needed */
+  }
   
   
   /* Adjusting the content area to accommodate the sidebar */

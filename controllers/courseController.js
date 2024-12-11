@@ -41,4 +41,19 @@ const getFilteredCourses = async (req, res) => {
   }
 };
 
-module.exports = { getFilteredCourses };
+
+// Controller function to view a course
+const viewCourse = async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.id).populate('instructor');
+    if (!course) {
+      return res.status(404).send('Course not found');
+    }
+    res.render('courseView', { course });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error loading course');
+  }
+};
+
+module.exports = { getFilteredCourses, viewCourse };

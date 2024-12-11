@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{course.title}} - Course View</title>
+  <link rel="stylesheet" href="/courseView.css"> <!-- Link to a custom stylesheet -->
+</head>
+<body>
+  <div class="course-container">
+    <!-- Course Thumbnail -->
+    <div class="thumbnail">
+      <img src="{{course.thumbnail}}" alt="{{course.title}}" />
+    </div>
+
+    <!-- Course Details -->
+    <div class="course-details">
+      <h1 class="course-title">{{course.title}}</h1>
+      <p class="course-description">{{course.description}}</p>
+      <p class="course-instructor">Instructor: {{course.instructor.name}}</p>
+
+      <!-- Enroll Button -->
+      <form action="/enroll/{{course._id}}" method="POST">
+        <button type="submit" class="enroll-btn">Enroll Now</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
