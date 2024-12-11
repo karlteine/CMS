@@ -24,6 +24,11 @@ app.engine(
     defaultLayout: 'index',
     layoutsDir: path.join(__dirname, 'views/'),
     partialsDir: path.join(__dirname, 'views/partials'),
+    helpers: {
+      eq: function (a, b) {
+        return a === b;
+      }
+    }
   })
 );
 
@@ -62,6 +67,7 @@ app.use(mainRoutes);
 app.use(userRoutes); // Add user-specific routes
 app.use(profileRoutes);
 app.use(createCourseRoutes)
+
 
 // Start the server
 app.listen(3025, () => {
