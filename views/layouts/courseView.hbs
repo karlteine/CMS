@@ -10,14 +10,14 @@
   <div class="course-container">
     <!-- Course Thumbnail -->
     <div class="thumbnail">
-      <img src="{{course.thumbnail}}" alt="{{course.title}}" />
+      <img src="{{course.thumbnailUrl}}" alt="{{course.title}}" />
     </div>
 
     <!-- Course Details -->
     <div class="course-details">
       <h1 class="course-title">{{course.title}}</h1>
       <p class="course-description">{{course.description}}</p>
-      <p class="course-instructor">Instructor: {{course.instructor.name}}</p>
+      <p class="course-instructor">Instructor: {{instructor.name}}</p>
 
       <!-- Enroll Button -->
       <form action="/enroll/{{course._id}}" method="POST">

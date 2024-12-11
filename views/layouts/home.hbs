@@ -10,7 +10,16 @@
   <!-- Header (Navbar) -->
   <header>
     <nav>
-      <div class="logo"><a href="/">VideoCourses</a></div>
+      <div class="logo">{{#if sessionUser}}
+        {{#if (eq sessionUser.role 'student')}}
+          <a href="/student/dashboard">VideoCourses - Student</a> <!-- Link for students -->
+        {{/if}}
+        {{#if (eq sessionUser.role 'instructor')}}
+          <a href="/instructor/dashboard">VideoCourses - Instructor</a> <!-- Link for instructors -->
+        {{/if}}
+      {{else}}
+        <a href="/home">VideoCourses - Guest</a> <!-- Default link for guests -->
+      {{/if}}</div>
       <ul class="nav-links">
         <li><a href="/contact">Contact</a></li>
         <li><a href="/profile">Profile</a></li>
