@@ -20,14 +20,27 @@
 
   <div class="main-container">
     <!-- Sidebar -->
-    <div class="sidebar">
-      <h3>Instructor Dashboard</h3>
-      <a href="/instructor-dashboard" >Dashboard</a>
-      <a href="/my-courses">My Courses</a>
+    <!-- Sidebar -->
+<div class="sidebar">
+  <h3>{{#if sessionUser}} 
+        {{#if (eq sessionUser.role 'instructor')}} 
+          Instructor Dashboard 
+        {{else}}
+          Student Dashboard 
+        {{/if}}
+      {{else}} 
+        Guest Dashboard 
+      {{/if}}
+  </h3>
+  <a href="/my-courses">My Courses</a>
+  {{#if sessionUser}}
+    {{#if (eq sessionUser.role 'instructor')}}
       <a href="/course-creation">Create Course</a>
-      <a href="/profile">Profile</a>
-      <a href="/logout">Logout</a>
-    </div>
+    {{/if}}
+  {{/if}}
+  <a href="/profile">Profile</a>
+  <a href="/logout">Logout</a>
+</div>
 
     <!-- Filter Section -->
     <div class="filter">

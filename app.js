@@ -23,6 +23,11 @@ app.engine(
     defaultLayout: 'index',
     layoutsDir: path.join(__dirname, 'views/'),
     partialsDir: path.join(__dirname, 'views/partials'),
+    helpers: {
+      eq: function (a, b) {
+        return a === b;
+      }
+    }
   })
 );
 
@@ -60,6 +65,7 @@ app.get('/search', (req, res) => {
 app.use(mainRoutes);
 app.use(userRoutes); // Add user-specific routes
 app.use(profileRoutes);
+
 
 // Start the server
 app.listen(3025, () => {
