@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,10 @@
     /* Add YouTube-like video styling */
     .video-container {
       position: relative;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
-      background-color: #000; /* Black background for the video area */
+      padding-top: 56.25%;
+      /* 16:9 Aspect Ratio */
+      background-color: #000;
+      /* Black background for the video area */
       margin-top: 20px;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
       width: 90%;
@@ -28,37 +31,39 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Fixed Navbar -->
   <header>
-     {{>navbar}}
+    {{>navbar}}
   </header>
 
   <!-- Main container with padding to avoid overlap with the navbar -->
   <div class="main-container">
-    
+
     <!-- Sidebar -->
     <div class="sidebar">
       <h3>
         {{#if sessionUser}}
-          {{#if (eq sessionUser.role 'instructor')}}
-            Instructor Dashboard
-          {{else}}
-            Student Dashboard
-          {{/if}}
+        {{#if (eq sessionUser.role 'instructor')}}
+        Instructor Dashboard
         {{else}}
-          Guest Dashboard
+        Student Dashboard
+        {{/if}}
+        {{else}}
+        Guest Dashboard
         {{/if}}
       </h3>
-      <a href="/my-courses">
+      <a
+        href="{{#if sessionUser}}{{#if (eq sessionUser.role 'instructor')}}/instructor/dashboard{{else}}/student/dashboard{{/if}}{{/if}}">
         <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
       </a>
       {{#if sessionUser}}
-        {{#if (eq sessionUser.role 'instructor')}}
-          <a href="/course-creation">
-            <img src="/images/icons/create.png" alt="Create Course Icon" class="icon"> Create Course
-          </a>
-        {{/if}}
+      {{#if (eq sessionUser.role 'instructor')}}
+      <a href="/course-creation">
+        <img src="/images/icons/create.png" alt="Create Course Icon" class="icon"> Create Course
+      </a>
+      {{/if}}
       {{/if}}
       <a href="/profile">
         <img src="/images/icons/profile.png" alt="Profile Icon" class="icon"> Profile
@@ -71,13 +76,14 @@
     <!-- Main content area (course details) -->
     <div class="content">
       <!-- Back Button -->
-        <a href="{{#if (eq sessionUser.role 'instructor')}}/instructor/dashboard{{else}}/student/dashboard{{/if}}" class="back-btn">
-             <img src="/images/icons/back.png" alt="Back Icon" class="icon"> Back to My Courses
-        </a>
+      <a href="{{#if (eq sessionUser.role 'instructor')}}/instructor/dashboard{{else}}/student/dashboard{{/if}}"
+        class="back-btn">
+        <img src="/images/icons/back.png" alt="Back Icon" class="icon"> Back to My Courses
+      </a>
 
       <div class="course-container">
         <!-- Course Thumbnail -->
-       
+
 
         <!-- Course Details -->
         <div class="course-info">
@@ -88,23 +94,21 @@
             <p class="course-instructor">Instructor: {{instructor.name}}</p>
 
             <!-- Enroll Button -->
-          
+
           </div>
         </div>
- 
+
       </div>
 
       <!-- Video Section -->
       <div class="video-container">
         {{#if course.videoUrl}}
-          <iframe 
-            src="{{course.videoUrl}}" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
+        <iframe src="{{course.videoUrl}}" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
         {{else}}
-          <p>No video available for this course.</p>
+        <p>No video available for this course.</p>
         {{/if}}
       </div>
 
@@ -117,4 +121,5 @@
     </div>
   </div>
 </body>
+
 </html>
