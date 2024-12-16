@@ -1,7 +1,7 @@
 // routes/mainRoutes.js
 const express = require('express');
 const router = express.Router();
-const { getFilteredCourses, getAllCourses } = require('../controllers/courseController');
+const navigationController = require('../controllers/navigationController');
 
 // Render the home page
 router.get('/', (req, res) => {
@@ -13,11 +13,7 @@ router.get('/signup', (req, res) => {
     res.render('layouts/sign-up', { layout: false });
 });
 
+router.get('/contact', navigationController.getUser);
 
-router.get('/home', getAllCourses);
-
-router.get('/contact', (req, res) => {
-    res.render('layouts/contact', { layout: false });
-})
 
 module.exports = router;

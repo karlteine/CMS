@@ -7,16 +7,50 @@
   <link rel="stylesheet" href="/profile.css">
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav>
-    <div class="logo"><a href="/">VideoCourses</a></div>
-    <ul class="nav-links">
-      <li><a href="/contact">Contact</a></li>
-      <li><a href="/profile">Profile</a></li>
-    </ul>
-  </nav>
+  <!-- Fixed Navbar -->
+  <header>
+     {{>navbar}}
+  </header>
 
   <div class="main-container" style="padding-top: 80px;">
+     <!-- Sidebar -->
+     <div class="sidebar">
+      <h3>
+        {{#if sessionUser}}
+          {{#if (eq sessionUser.role 'instructor')}}
+            Instructor Dashboard
+          {{else}}
+            Student Dashboard
+          {{/if}}
+        {{else}}
+          Guest Dashboard
+        {{/if}}
+      </h3>
+      {{#if (eq sessionUser.role 'student')}}
+        <a href="/student/dashboard" >
+        <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
+      </a>
+    {{/if}}
+    {{#if (eq sessionUser.role 'instructor')}}
+        <a href="/instructor/dashboard" >
+        <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
+      </a>
+    {{/if}}
+     
+      {{#if sessionUser}}
+        {{#if (eq sessionUser.role 'instructor')}}
+          <a href="/course-creation">
+            <img src="/images/icons/create.png" alt="Create Course Icon" class="icon"> Create Course
+          </a>
+        {{/if}}
+      {{/if}}
+      <a href="/profile" class="active">
+        <img src="/images/icons/profile.png" alt="Profile Icon" class="icon"> Profile
+      </a>
+      <a href="/logout">
+        <img src="/images/icons/logout.png" alt="Logout Icon" class="icon"> Logout
+      </a>
+    </div>
     <!-- Hero Section -->
     <section class="profile-hero">
       <h1>Welcome, {{sessionUser.name}}!</h1>

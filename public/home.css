@@ -9,7 +9,7 @@ html, body {
   display: flex;           /* Use flexbox layout */
   flex-direction: column;  /* Arrange children in a vertical direction */
   min-height: 100%;        /* Ensure the container takes at least the full height of the viewport */
-  padding-top: 20px;
+  padding-top: 32px;
 }
 
 .content {
@@ -21,27 +21,27 @@ nav {
   color: white;
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
   position: fixed;
   z-index: 1;
   width: 100%;
+  align-items: last baseline;
+  padding-left: 10px;
+}
+
+nav .logo a, nav a {
+  color: white;
+  text-decoration: none;
 }
 
 nav .nav-links {
   list-style: none;
   display: flex;
-  margin: 0;
   padding: 0;
   margin-right: 33px;
 }
 
 nav .nav-links li {
   margin-left: 15px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
 }
 
 .course-grid {
@@ -229,7 +229,7 @@ footer ul li a:hover {
     top: 25;
     height: 100%;
     background-color: #f4f4f4;
-    padding-top: 20px;
+    padding-top: 5px;
     border-right: 1px solid #ddd;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   }
@@ -257,7 +257,10 @@ footer ul li a:hover {
     width: 20px;
     height: 20px; /* Adjust as needed */
   }
-  
+  .sidebar a.active {
+    background-color: #333;
+    color: #fff;
+  }
   
   /* Adjusting the content area to accommodate the sidebar */
   .main-container {

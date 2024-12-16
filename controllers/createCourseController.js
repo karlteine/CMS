@@ -1,6 +1,20 @@
 const Course = require("../models/Course");
 
 const createCourseController = {
+  getForm: async(req, res) => {
+   // Ensure the user is logged in
+   if (!req.session.user) {
+    return res.redirect('/'); // Redirect to login page if not logged in
+  }
+
+  // Retrieve session user details
+  const sessionUser = req.session.user;
+
+  res.render('layouts/course-creation', {
+    sessionUser, // Pass session user to the template
+    layout: false, // Optional: skip default layout
+  });
+  },
   createCourse: async (req, res) => {
     const { title, description, videoUrl, thumbnailUrl, language, category, price, difficulty } = req.body;
 
@@ -26,7 +40,7 @@ const createCourseController = {
       await newCourse.save();
 
       // Redirect to the instructor's dashboard or another relevant page
-      res.redirect("/home");
+      res.redirect("/instructor/dashboard");
     } catch (err) {
       console.error("Error creating course:", err);
       res.status(500).send("Internal Server Error");

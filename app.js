@@ -4,7 +4,7 @@ const path = require('path');
 const hbs = require('express-handlebars');
 const fs = require('fs');
 const connectToMongoDB = require('./mongodb/mongodb.connect.js'); 
-const mainRoutes = require('./routes/mainRoutes.js'); 
+const navigationRoutes = require('./routes/navigationRoutes.js'); 
 const userRoutes = require('./routes/userRoutes.js'); 
 const profileRoutes = require('./routes/profileRoutes.js')
 const createCourseRoutes = require('./routes/createCourseRoutes.js')
@@ -63,7 +63,7 @@ app.get('/search', (req, res) => {
 });
 
 // Use imported routes
-app.use(mainRoutes);
+app.use(navigationRoutes);
 app.use(userRoutes); // Add user-specific routes
 app.use(profileRoutes);
 app.use(createCourseRoutes)

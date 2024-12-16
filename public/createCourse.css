@@ -16,33 +16,37 @@ html, body {
     flex-grow: 1;  /* Content area grows to take available space */
   }
   
-  nav {
-    background: #333;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-  }
-  
-  nav .nav-links {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    margin-right: 33px;
-  }
-  
-  nav .nav-links li {
-    margin-left: 15px;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-  }
+/* Navbar */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  z-index: 1;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 23px 0px 10px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-left: 15px;
+}
   
   .course-grid {
     display: grid;
@@ -221,42 +225,47 @@ html, body {
   }
   
   
-    /* Basic sidebar styling */
-    .sidebar {
-      width: 250px;
-      position: fixed;
-      left: 0;
-      top: 25;
-      height: 100%;
-      background-color: #f4f4f4;
-      padding-top: 20px;
-      border-right: 1px solid #ddd;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    }
-  
-    .sidebar h3 {
-      padding-left: 15px;
-      font-size: 1.5em;
-      color: #333;
-    }
-  
-    .sidebar a {
-      display: block;
-      padding: 10px 15px;
-      text-decoration: none;
-      color: #333;
-      font-size: 18px;
-    }
-  
-    .sidebar a:hover  {
-      background-color: #ddd;
-    }
-  
-    .sidebar a img.icon {
-      margin-right: 10px;
-      width: 20px;
-      height: 20px; /* Adjust as needed */
-    }
+     /* Basic sidebar styling */
+  .sidebar {
+    width: 250px;
+    position: fixed;
+    left: 0;
+   
+    height: 100%;
+    background-color: #f4f4f4;
+    padding-top: 17px;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar h3 {
+    padding-left: 15px;
+    font-size: 1.5em;
+    color: #333;
+  }
+
+  .sidebar a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+  }
+
+  .sidebar a:hover  {
+    background-color: #ddd;
+  }
+
+  .sidebar a img.icon {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px; /* Adjust as needed */
+  }
+
+  .sidebar a.active {
+    background-color: #333;
+    color: #fff;
+  }
     
     
     /* Adjusting the content area to accommodate the sidebar */
@@ -292,60 +301,11 @@ html, body {
     .content {
       padding-left: 20px;
     }
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      
-      header {
-        background-color: #333;
-        color: #fff;
-        padding: 15px;
-      }
-      
-      header .logo a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 24px;
-      }
-      
-      .nav-links {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: flex-end;
-      }
-      
-      .nav-links li {
-        margin-left: 20px;
-      }
-      
-      .nav-links a {
-        color: #fff;
-        text-decoration: none;
-      }
+  
       
       .main-container {
         display: flex;
         min-height: 100vh;
-      }
-      
-      
-      
-      .sidebar a {
-        display: block;
-        color: #333;
-        text-decoration: none;
-        margin-bottom: 15px;
-        padding: 10px;
-        border-radius: 4px;
-      }
-      
-      .sidebar a.active {
-        background-color: #333;
-        color: #fff;
       }
       
       .content {

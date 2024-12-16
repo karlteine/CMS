@@ -1,21 +1,19 @@
+/* General Styles */
 html, body {
   font-family: Arial, sans-serif;
-  height: 100%;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 body {
   background-color: #f4f4f4;
-}
-
-.main-container {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-  padding: 20px;
+  align-items: center;
 }
 
+/* Navbar */
 nav {
   background: #333;
   color: white;
@@ -26,6 +24,7 @@ nav {
   width: 100%;
   align-items: last baseline;
   padding-left: 10px;
+  left: 0;
 }
 
 nav .logo a, nav a {
@@ -44,66 +43,160 @@ nav .nav-links li {
   margin-left: 15px;
 }
 
-nav .nav-links a {
-  color: white;
-  padding: 10px;
-  text-decoration: none;
+/* Main Container */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  margin-top: 80px;
+  flex: 1; /* Makes the container grow to fill available space */
 }
 
-nav .nav-links .active {
-  background-color: #007bff;
-  border-radius: 5px;
-}
-
+/* Hero Section */
 .profile-hero {
-  background-color: white;
-  padding: 30px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #fff;
   border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 30px;
 }
 
 .profile-hero h1 {
-  font-size: 28px;
+  font-size: 2.5em;
   margin-bottom: 10px;
 }
 
+.profile-hero p {
+  font-size: 1.2em;
+  color: #666;
+  margin: 5px 0;
+}
+
+/* Profile Actions Section */
 .profile-actions {
-  margin-top: 30px;
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .profile-actions h2 {
-  font-size: 24px;
   margin-bottom: 20px;
 }
 
 .profile-actions ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.profile-actions ul li {
-  margin-bottom: 10px;
+.profile-actions li {
+  margin: 15px 0;
 }
 
-.profile-actions ul li a {
+.profile-actions a {
   color: #007bff;
   text-decoration: none;
-  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-.profile-actions ul li a:hover {
-  text-decoration: underline;
+.profile-actions a:hover {
+  color: #0056b3;
 }
 
+/* Footer */
 footer {
   background-color: #333;
   color: white;
+  width: 100%;
   padding: 20px 0;
   text-align: center;
   font-size: 14px;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 footer p {
   margin: 0;
-  padding-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-hero, .profile-actions {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .profile-hero h1 {
+    font-size: 2em;
+  }
+
+  .profile-actions ul {
+    text-align: center;
+  }
+}
+ /* Basic sidebar styling */
+ .sidebar {
+  width: 250px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #f4f4f4;
+  padding-top: 37px;
+  border-right: 1px solid #ddd;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+  padding-left: 15px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+.sidebar a:hover  {
+  background-color: #ddd;
+}
+
+.sidebar a img.icon {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px; /* Adjust as needed */
+}
+.sidebar a.active {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Adjusting the content area to accommodate the sidebar */
+.main-container {
+  margin-left: 250px;  /* Creates space for the sidebar */
+  padding-left: 20px;  /* Adjust for padding */
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Styling for main content */
+.content {
+  padding-left: 20px;
 }

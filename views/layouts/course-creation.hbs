@@ -8,27 +8,40 @@
 </head>
 <body>
   
-    <nav
-      <div class="logo"><a href="/">VideoCourses</a></div>
-      <ul class="nav-links">
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/profile">Profile</a></li>
-      </ul>
-    </nav>
+    <header>
+    {{>navbar}}
+  </header>
+
   
 
   <div class="main-container">
-    <!-- Sidebar -->
+   
     <div class="sidebar">
       <h3>
+        {{#if sessionUser}}
+          {{#if (eq sessionUser.role 'instructor')}}
             Instructor Dashboard
+          {{else}}
+            Student Dashboard
+          {{/if}}
+        {{else}}
+          Guest Dashboard
+        {{/if}}
       </h3>
-      <a href="/my-courses">
+      {{#if (eq sessionUser.role 'student')}}
+        <a href="/student/dashboard">
         <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
       </a>
+    {{/if}}
+    {{#if (eq sessionUser.role 'instructor')}}
+        <a href="/instructor/dashboard" >
+        <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
+      </a>
+    {{/if}}
+     
       {{#if sessionUser}}
         {{#if (eq sessionUser.role 'instructor')}}
-          <a href="/course-creation">
+          <a href="/course-creation" class="active">
             <img src="/images/icons/create.png" alt="Create Course Icon" class="icon"> Create Course
           </a>
         {{/if}}
@@ -40,7 +53,6 @@
         <img src="/images/icons/logout.png" alt="Logout Icon" class="icon"> Logout
       </a>
     </div>
-
     <!-- Main Content -->
     <main class="content">
       <h1>Create a New Course</h1>

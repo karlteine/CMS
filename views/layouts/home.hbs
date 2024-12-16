@@ -26,9 +26,17 @@
           Guest Dashboard
         {{/if}}
       </h3>
-      <a href="/my-courses">
+      {{#if (eq sessionUser.role 'student')}}
+        <a href="/student/dashboard" class="active">
         <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
       </a>
+    {{/if}}
+    {{#if (eq sessionUser.role 'instructor')}}
+        <a href="/instructor/dashboard" class="active">
+        <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
+      </a>
+    {{/if}}
+     
       {{#if sessionUser}}
         {{#if (eq sessionUser.role 'instructor')}}
           <a href="/course-creation">
@@ -46,19 +54,17 @@
 
 
     
-    <h1>Current user</h1>
-    <div class="current-user">
+  
+    <div class="current-user" style="padding-top: 10px;">
       {{#if sessionUser}}
-        <p>Welcome instructor, {{sessionUser.name}}!</p>
-        <p>Email: {{sessionUser.email}}</p>
-        <p>Role: {{sessionUser.role}}</p>
+        <h1>Welcome {{sessionUser.name}}!</h1>
       {{else}}
         <p>Welcome, Guest! Please <a href="/login">log in</a>.</p>
       {{/if}}
     </div>
     
 
-      <h1>Available Courses</h1>
+      <h1>My Courses</h1>
     <!-- Filter Section -->
     <div class="filter">
     

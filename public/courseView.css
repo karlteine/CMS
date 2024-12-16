@@ -3,14 +3,14 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
   margin: 0;
-  padding: 20px;
+ 
 }
 
 .main-container {
   display: flex;           /* Use flexbox layout */
   flex-direction: column;  /* Arrange children in a vertical direction */
   max-height: 100vh;       /* Ensure the container takes at least the full height of the viewport */
-  padding-top: 40px;       /* Give space for the fixed navbar */
+  padding-top: 60px;       /* Give space for the fixed navbar */
 }
 
 .course-container {
@@ -104,29 +104,27 @@ nav {
   color: white;
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%; /* Ensure the navbar is constrained to the full width of the viewport */
-  box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+  z-index: 1;
+  width: 100%;
+  align-items: last baseline;
+  padding-left: 10px;
+}
+
+nav .logo a, nav a {
+  color: white;
+  text-decoration: none;
 }
 
 nav .nav-links {
   list-style: none;
   display: flex;
-  margin: 0;
   padding: 0;
+  margin-right: 33px;
 }
 
 nav .nav-links li {
   margin-left: 15px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
 }
 
 /* Sidebar styling */
@@ -137,7 +135,7 @@ nav a {
   left: 0;
   height: 100%; /* Adjust height to fit the screen minus navbar height */
   background-color: #f4f4f4;
-  padding-top: 20px;
+  padding-top: 27px;
   border-right: 1px solid #ddd;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }

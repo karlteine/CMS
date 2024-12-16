@@ -5,28 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{course.title}} - Course View</title>
   <link rel="stylesheet" href="/courseView.css"> <!-- Link to a custom stylesheet -->
-  <style>
-    /* Add YouTube-like video styling */
-    .video-container {
-      position: relative;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
-      background-color: #000; /* Black background for the video area */
-      margin-top: 20px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      width: 90%;
-      margin: auto;
-    }
-
-    .video-container iframe,
-    .video-container video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  </style>
 </head>
 <body>
   <!-- Fixed Navbar -->
@@ -50,6 +28,7 @@
           Guest Dashboard
         {{/if}}
       </h3>
+
       <a href="/my-courses">
         <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
       </a>
@@ -71,13 +50,15 @@
     <!-- Main content area (course details) -->
     <div class="content">
       <!-- Back Button -->
-        <a href="{{#if (eq sessionUser.role 'instructor')}}/instructor/dashboard{{else}}/student/dashboard{{/if}}" class="back-btn">
+       <a href="{{#if (eq sessionUser.role 'instructor')}}/instructor/dashboard{{else}}/student/dashboard{{/if}}" class="back-btn">
              <img src="/images/icons/back.png" alt="Back Icon" class="icon"> Back to My Courses
         </a>
 
       <div class="course-container">
         <!-- Course Thumbnail -->
-       
+        <div class="thumbnail">
+          <img src="{{course.thumbnailUrl}}" alt="{{course.title}}" />
+        </div>
 
         <!-- Course Details -->
         <div class="course-info">
@@ -88,31 +69,18 @@
             <p class="course-instructor">Instructor: {{instructor.name}}</p>
 
             <!-- Enroll Button -->
-          
+            <form action="/enroll/{{course._id}}" method="POST">
+              <button type="submit" class="enroll-btn">Enroll Now</button>
+            </form>
           </div>
         </div>
  
       </div>
-
-      <!-- Video Section -->
-      <div class="video-container">
-        {{#if course.videoUrl}}
-          <iframe 
-            src="{{course.videoUrl}}" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
-        {{else}}
-          <p>No video available for this course.</p>
-        {{/if}}
-      </div>
-
-      <!-- Full-width Course Description -->
-      <div class="description-container">
-        <h2>Description</h2>
-        <p>{{course.description}}</p>
-      </div>
+       <!-- Full-width Course Description -->
+        <div class="description-container">
+          <h2>Description</h2>
+          <p>{{course.description}}</p>
+        </div>
 
     </div>
   </div>

@@ -3,7 +3,7 @@ const checkStudentRole = (req, res, next) => {
     if (req.session.user && req.session.user.role === "student") {
         return next();
     } else {
-        return res.status(403).send("Permission denied");
+        return res.render("index");
     }
 };
 
@@ -12,7 +12,7 @@ const checkInstructorRole = (req, res, next) => {
     if (req.session.user && req.session.user.role === "instructor") {
         return next();
     } else {
-        return res.status(403).send("Permission denied");
+        return res.render("index");
     }
 };
 
