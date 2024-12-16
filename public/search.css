@@ -1,68 +1,290 @@
-/* General Styles */
 html, body {
-    font-family: Arial, sans-serif;
-    height: 100%; 
-    margin: 0;
-    padding: 0;
-    display: flex; 
+  font-family: Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  display: flex;           /* Use flexbox layout */
+  flex-direction: column;  /* Arrange children in a vertical direction */
+  min-height: 100%;        /* Ensure the container takes at least the full height of the viewport */
+  padding-top: 32px;
+}
+
+.content {
+  flex-grow: 1;  /* Content area grows to take available space */
+}
+
+nav {
+  background: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  align-items: last baseline;
+  padding-left: 10px;
+}
+
+nav .logo a, nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav .nav-links {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin-right: 33px;
+}
+
+nav .nav-links li {
+  margin-left: 15px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Auto-fill the grid with 300px min width */
+  gap: 20px;
+  padding: 20px;
+}
+
+.course-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  width: 100%; /* Make sure the card takes the full width of its grid cell */
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+}
+
+.thumbnail {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.course-info {
+  padding: 10px;
+}
+
+.price {
+  color: green;
+  font-weight: bold;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+footer p {
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+footer ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+  color: #f39c12;
+}
+
+@media (max-width: 768px) {
+  footer ul {
+    text-align: center;
+  }
+
+  footer ul li {
+    display: block;
+    margin: 5px 0;
+  }
+}
+
+/* Style for the Filter Section */
+.filter {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+/* Styling for applied filter tags */
+.applied-filters {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.applied-filters .filter-tag {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.applied-filters .filter-tag span {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.applied-filters .filter-tag:hover {
+  background-color: #0056b3;
+}
+
+.filter form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filter label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.filter select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  background-color: #fff;
+  color: #333;
+}
+
+.filter select:focus {
+  border-color: #007bff;
+}
+
+.filter button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .filter form {
     flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .main-container {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-     
+
+  .filter select {
+    width: 100%;
   }
-  
-  .content {
-    flex-grow: 1; 
+}
+
+
+  /* Basic sidebar styling */
+  .sidebar {
+    width: 250px;
+    position: fixed;
+    left: 0;
+    top: 25;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding-top: 5px;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   }
-  
-  
-  /* Navigation Styles */
-  nav {
-    background: #333;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
+
+  .sidebar h3 {
+    padding-left: 15px;
+    font-size: 1.5em;
+    color: #333;
   }
-  
-  nav .logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  nav .nav-links {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav .nav-links li {
-    margin-left: 15px;
-  }
-  
-  nav a {
-    color: white;
+
+  .sidebar a {
+    display: block;
+    padding: 10px 15px;
     text-decoration: none;
-    font-size: 16px;
+    color: #333;
+    font-size: 18px;
+  }
+
+  .sidebar a:hover  {
+    background-color: #ddd;
+  }
+
+  .sidebar a img.icon {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px; /* Adjust as needed */
+  }
+  .sidebar a.active {
+    background-color: #333;
+    color: #fff;
   }
   
-  nav a:hover {
-    text-decoration: underline;
+  /* Adjusting the content area to accommodate the sidebar */
+  .main-container {
+    margin-left: 250px;  /* Creates space for the sidebar */
+    padding-left: 20px;  /* Adjust for padding */
   }
-  
-  /* Search Bar Styles */
-  .search-container {
+
+  .nav-links {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Styling for main content */
+  .content {
+    padding-left: 20px;
+  }
+
+   /* Search Bar Styles */
+   .search-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 40px;
     background-color: #f9f9f9;
   }
   
@@ -117,312 +339,4 @@ html, body {
   
   .search-container button:hover img {
     transform: scale(1.1);
-  }
-  
-  /* Additional styling for filter button */
-  .filter-toggle-btn img {
-    width: 20px;
-    height: 20px;
-  }
-  
-  /* Filter Section Styles */
-.filter-section {
-  display: none; /* Hidden by default, toggled visibility */
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.filter-section label {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.filter-section select {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  background-color: white;
-  color: #333;
-  box-sizing: border-box;
-}
-
-.applied-filters {
-  display: flex; /* Aligns the filter tags in a row */
-  flex-wrap: wrap; /* Allows the tags to wrap to the next line if necessary */
-  gap: 10px; /* Space between tags */
-  max-width: 100%; /* Ensures it takes up the full width of its container */
-  margin: 20px 0; /* Adds space above and below the applied filters */
-}
-
-/* Individual Filter Tags */
-.filter-tag {
-  display: flex; /* Use flexbox for the content inside the tag */
-  align-items: center; /* Vertically align text and the 'x' icon */
-  background-color: #007bff; /* Blue background for tags */
-  color: white;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 14px;
-  white-space: nowrap; /* Prevents the text from breaking into multiple lines */
-}
-
-.filter-tag span {
-  margin-left: 10px; /* Space between text and the 'x' icon */
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.filter-tag:hover {
-  background-color: #0056b3; /* Darker blue when hovering over the tag */
-}
-
-.filter-section button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-  margin-top: 10px;
-}
-
-.filter-section button:hover {
-  background-color: #0056b3;
-}
-
-/* Tags Styles */
-.tag {
-  display: inline-block;
-  background-color: #007bff;
-  color: white;
-  padding: 5px 15px;
-  margin: 5px 5px 5px 0;
-  border-radius: 20px;
-  font-size: 14px;
-}
-
-.tag:hover {
-  background-color: #0056b3;
-  cursor: pointer;
-}
-
-/* Visible Filter Section */
-.filter-section.hidden {
-  display: none;
-}
-
-.filter-section:not(.hidden) {
-  display: block;
-}
-
-  /* Course Grid Styles */
-
-/* Course Grid Styles */
-.course-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatically adjust based on screen size */
-  gap: 20px; /* Fixed gap between cards */
-  padding: 20px;
-  justify-items: center; /* Ensures items align properly */
-}
-
-/* Ensure each card keeps a fixed width */
-.course-card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  transition: transform 0.3s, box-shadow 0.3s;
-  margin: 0 auto; /* Center the cards within their grid cells */
-}
-
-/* Responsive for medium screens */
-@media (max-width: 1024px) {
-  .course-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
-  }
-}
-
-/* For smaller screens, set to 1 column */
-@media (max-width: 600px) {
-  .course-grid {
-    grid-template-columns: 1fr; /* 1 column for small screens */
-  }
-}
-
-
-  
-  .course-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  
-  
-  .thumbnail {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .course-info {
-    padding: 10px;
-  }
-  
-  .course-info h3 {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 8px;
-  }
-  
-  .price {
-    color: green;
-    font-weight: bold;
-    font-size: 16px;
-  }
-  
-  /* Footer Styles */
-  footer {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    font-size: 14px;
-    margin-top: auto; 
-  }
-  
-  footer .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  footer p {
-    margin: 0;
-    padding-bottom: 10px;
-  }
-  
-  footer ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  footer ul li {
-    display: inline-block;
-    margin: 0 15px;
-  }
-  
-  footer ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-  }
-  
-  footer ul li a:hover {
-    color: #f39c12;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    nav {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    nav .nav-links {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    nav .nav-links li {
-      margin: 10px 0;
-    }
-
-
-    .search-container form {
-      width: 100%;
-      max-width: none;
-    }
-  
-    .course-grid {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-  
-    footer ul {
-      text-align: center;
-    }
-  
-    footer ul li {
-      display: block;
-      margin: 5px 0;
-    }
-  }
-  
-   /* Basic sidebar styling */
-   .sidebar {
-    width: 250px;
-    position: fixed;
-    left: 0;
-    top: 25;
-    height: 100%;
-    background-color: #f4f4f4;
-    padding-top: 5px;
-    border-right: 1px solid #ddd;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  }
-
-  .sidebar h3 {
-    padding-left: 15px;
-    font-size: 1.5em;
-    color: #333;
-  }
-
-  .sidebar a {
-    display: block;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-  }
-
-  .sidebar a:hover  {
-    background-color: #ddd;
-  }
-
-  .sidebar a img.icon {
-    margin-right: 10px;
-    width: 20px;
-    height: 20px; /* Adjust as needed */
-  }
-  .sidebar a.active {
-    background-color: #333;
-    color: #fff;
-  }
-  
-  /* Adjusting the content area to accommodate the sidebar */
-  .main-container {
-    margin-left: 250px;  /* Creates space for the sidebar */
-    padding-left: 20px;  /* Adjust for padding */
-  }
-
-  .nav-links {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  /* Styling for main content */
-  .content {
-    padding-left: 20px;
   }

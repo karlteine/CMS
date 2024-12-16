@@ -41,7 +41,7 @@
       </a>
     {{/if}}
     {{#if (eq sessionUser.role 'instructor')}}
-        <a href="/instructor/dashboard" class="active">
+        <a href="/instructor/dashboard" >
         <img src="/images/icons/home.png" alt="My Courses Icon" class="icon"> My Courses
       </a>
     {{/if}}
@@ -89,7 +89,7 @@
 
     
     <!-- Hidden Filter Section -->
-    <div id="filter-section" class="filter-section hidden">
+    <div id="filter-section" class="filter hidden">
       <form id="filter-form" method="GET" action="/search">
             <label for="category">Filter by Category:</label>
             <select name="category" id="category">

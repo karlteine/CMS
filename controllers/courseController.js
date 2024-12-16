@@ -7,37 +7,45 @@ const getAllCourses = async (req, res) => {
     // Extract query parameters for filters
     const { category, price, difficulty, language } = req.query;
 
-    // Create a filter object to pass to the database query
-    let filter = {};
+    // Fetch the current user's document from the database
+    const userId = req.session.user.id; // Assuming the session stores the user's ID
+    if (!userId) {
+      return res.status(401).send('Unauthorized access'); // Handle unauthorized access
+    }
 
-    // Filter by category if selected
+    const user = await User.findById(userId).lean(); // Replace `User` with your user model
+    if (!user || !user.registered_courses) {
+      return res.status(404).send('User or registered courses not found');
+    }
+
+    // Extract the course IDs from the user's registered courses
+    const registeredCourseIds = user.registered_courses.map(course => course.course_id);
+
+    // Create a filter object to pass to the database query
+    let filter = { _id: { $in: registeredCourseIds } }; // Filter only registered courses
+
+    // Add additional filters
     if (category) {
       filter.category = category;
     }
-
-    // Filter by language if selected
     if (language) {
       filter.language = language;
     }
-
-    // Filter by price if selected
     if (price) {
       if (price === 'free') {
-        filter.price = { $eq: 0 }; // Assuming 'price' is a numeric value, 0 for free courses
+        filter.price = { $eq: 0 }; // Free courses
       } else if (price === 'paid') {
-        filter.price = { $gt: 0 }; // Filter for paid courses (prices greater than 0)
+        filter.price = { $gt: 0 }; // Paid courses
       }
     }
-
-    // Filter by difficulty if selected
     if (difficulty) {
       filter.difficulty = difficulty;
     }
 
     // Fetch courses from the database with the applied filters
-    const courses = await Course.find(filter).lean(); // .lean() returns plain JavaScript objects
+    const courses = await Course.find(filter).lean(); // Replace `Course` with your course model
 
-    // Access the session user (if any)
+    // Access the session user
     const sessionUser = req.session.user || null;
 
     // Render the student dashboard with the filtered courses data and session user
@@ -55,6 +63,7 @@ const getAllCourses = async (req, res) => {
     res.status(500).send('Error rendering student dashboard');
   }
 };
+
 
 // Controller function to view a course
 const viewCourse = async (req, res) => {
@@ -151,7 +160,10 @@ const enrollCourse = async (req, res) => {
     return res.render('layouts/courseView', {
       course,
       instructor,
-      sessionUser,
+      sessionUser: {
+        ...sessionUser.toObject(), // Convert Mongoose document to plain object
+        role: sessionUser.role,   // Ensure 'role' is explicitly included
+      },
       layout: false,
     });
   } catch (error) {
