@@ -52,15 +52,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-// Route for the search page
-app.get('/search', (req, res) => {
-  const query = req.query.query || '';
-  const filteredCourses = courses.filter(course =>
-    course.title.toLowerCase().includes(query.toLowerCase())
-  );
 
-  res.render('search', { courses: filteredCourses, query });
-});
 
 // Use imported routes
 app.use(navigationRoutes);

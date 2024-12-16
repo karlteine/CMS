@@ -16,4 +16,15 @@ router.get('/signup', (req, res) => {
 router.get('/contact', navigationController.getUser);
 
 
+router.get('/search', async (req, res) => {
+    try {
+        // Call getFilteredCourses to fetch the filtered courses
+        await navigationController.getAllCourses(req, res);
+    } catch (err) {
+        console.error("Error rendering student dashboard:", err);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+
 module.exports = router;

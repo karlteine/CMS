@@ -1,5 +1,5 @@
 const User = require('../models/User');
-
+const Course = require('../models/Course');
 
 const navigationController = {
     getUser: (req, res) => {
@@ -15,6 +15,54 @@ const navigationController = {
       sessionUser, // Pass session user to the template
       layout: false, // Optional: skip default layout
     });
+    },
+
+    getAllCourses: async (req, res) => {
+      try {
+        // Extract query parameters for filters
+        const { category, price, difficulty } = req.query;
+    
+        // Create a filter object to pass to the database query
+        let filter = {};
+    
+        // Filter by category if selected
+        if (category) {
+          filter.category = category;
+        }
+    
+        // Filter by price if selected
+        if (price) {
+          if (price === 'free') {
+            filter.price = { $eq: 0 }; // Assuming 'price' is a numeric value, 0 for free courses
+          } else if (price === 'paid') {
+            filter.price = { $gt: 0 }; // Filter for paid courses (prices greater than 0)
+          }
+        }
+    
+        // Filter by difficulty if selected
+        if (difficulty) {
+          filter.difficulty = difficulty;
+        }
+    
+        // Fetch courses from the database with the applied filters
+        const courses = await Course.find(filter).lean(); // .lean() returns plain JavaScript objects
+    
+        // Access the session user (if any)
+        const sessionUser = req.session.user || null;
+    
+        // Render the student dashboard with the filtered courses data and session user
+        res.render('layouts/search', {
+          courses,      // Pass the filtered courses to the view
+          sessionUser,  // Pass session user for personalization (if needed)
+          layout: false, // Set layout to false if you don't want the default layout
+          category,     // Pass the applied category filter to the view
+          price,         // Pass the applied price filter to the view
+          difficulty     // Pass the applied difficulty filter to the view
+        });
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+        res.status(500).send('Error rendering student dashboard');
+      }
     }
 }
 
