@@ -63,7 +63,28 @@ const navigationController = {
         console.error('Error fetching courses:', error);
         res.status(500).send('Error rendering student dashboard');
       }
-    }
+    },
+
+    filteredCourses: async (req, res) => {
+        // Handle POST requests for search
+        try {
+            const { query } = req.body; // Get query from form data
+            const filter = query ? { title: { $regex: query, $options: 'i' } } : {};
+
+            const courses = await Course.find(filter).lean();
+            const sessionUser = req.session.user || null;
+
+            res.render('layouts/search', {
+                courses,
+                sessionUser,
+                layout: false,
+                query,
+            });
+        } catch (error) {
+            console.error('Error processing search:', error);
+            res.status(500).send('Error processing search');
+        }
+    },
 }
 
 
