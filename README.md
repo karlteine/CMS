@@ -94,3 +94,5 @@ These are general routes for rendering home and contact pages, and handling user
 | `GET`       | `/`          | Render the home page                          | `navigationController.getUser` |
 | `GET`       | `/signup`    | Render the sign-up page                       | `navigationController.getUser` |
 | `GET`       | `/contact`   | Render the contact page                       | `navigationController.getUser` |
+| `GET`       | `/search`   | Render the search page                       | `navigationController.getAllCourses` |
+| `GET`       | `/search`   | Filter the courses based on query                  | `navigationController.filteredCourses` |
