@@ -24,11 +24,19 @@ const createCourseController = {
         return res.status(400).send("All fields are required");
       }
 
+      // Transform the video URL into the embed format
+      let embedUrl = videoUrl;
+      const match = videoUrl.match(/v=([^&]+)/); // Extract video ID from the URL
+      if (match) {
+        const videoId = match[1];
+        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      }
+
       // Create a new course
       const newCourse = new Course({
         title,
         description,
-        videoUrl,
+        videoUrl: embedUrl,
         thumbnailUrl,
         language,
         category,

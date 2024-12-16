@@ -71,7 +71,7 @@
     <!-- Filter Section -->
     <div class="filter">
     
-      <form method="GET" action="/home">
+      <form method="GET" action="{{#if (eq sessionUser.role 'student')}}/student/dashboard{{else}}/instructor/dashboard{{/if}}">
         <label for="category">Filter by Category:</label>
         <select name="category" id="category">
           <option value="">All</option>
@@ -95,6 +95,13 @@
           <option value="advanced" <%= difficulty === 'advanced' ? 'selected' : '' %>>Advanced</option>
         </select>
 
+        <label for="language">Filter by Language:</label>
+        <select name="language" id="language">
+          <option value="">All</option>
+          <option value="estonian" <%= language === 'estonian' ? 'selected' : '' %>>Estonian</option>
+          <option value="english" <%= language === 'english' ? 'selected' : '' %>>English</option>
+        </select>
+
         <button type="submit">Apply Filters</button>
       </form>
       
@@ -108,6 +115,9 @@
         {{/if}}
         {{#if difficulty}}
           <div class="filter-tag">Difficulty: {{difficulty}} <span onclick="removeFilter('difficulty')">x</span></div>
+        {{/if}}
+        {{#if language}}
+          <div class="filter-tag">Language: {{language}} <span onclick="removeFilter('language')">x</span></div>
         {{/if}}
       </div>
     </div>

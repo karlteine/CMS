@@ -6,33 +6,39 @@ const userController = {
     const { name, email, password, role } = req.body;
 
     try {
-      // Check if email already exists
-      const existingUser = await User.findOne({ email });
-      if (existingUser) {
-        return res.status(400).send("Email already registered");
-      }
+        // Check if email already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).send("Email already registered");
+        }
 
-      // Create a new user
-      const newUser = new User({ name, email, password, role });
-      await newUser.save();
+        // Create a new user
+        const newUser = new User({ name, email, password, role });
+        await newUser.save();
 
-      // Start a session and store user data
-      req.session.user = {
-        id: newUser._id,
-        name: newUser.name,
-        email: newUser.email,
-        role: newUser.role,
-      };
+        // Start a session and store user data
+        req.session.user = {
+            id: newUser._id,
+            name: newUser.name,
+            email: newUser.email,
+            role: newUser.role,
+        };
 
-      console.log("Session started for user:", req.session.user);
+        console.log("Session started for user:", req.session.user);
 
-      // Redirect to home page after successful signup
-      res.redirect("/home");
+        // Redirect based on user role
+        if (newUser.role === "student") {
+            res.redirect("/student/dashboard"); // Redirect to student dashboard
+        } else if (newUser.role === "instructor") {
+            res.redirect("/instructor/dashboard"); // Redirect to instructor dashboard
+        } else {
+            res.status(400).send("Invalid user role");
+        }
     } catch (err) {
-      console.error("Error during user signup:", err);
-      res.status(500).send("Internal Server Error");
+        console.error("Error during user signup:", err);
+        res.status(500).send("Internal Server Error");
     }
-  },
+},
 
   login: async (req, res) => {
     const { email, password } = req.body;

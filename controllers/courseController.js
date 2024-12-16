@@ -5,7 +5,7 @@ const User = require('../models/User');
 const getAllCourses = async (req, res) => {
   try {
     // Extract query parameters for filters
-    const { category, price, difficulty } = req.query;
+    const { category, price, difficulty, language } = req.query;
 
     // Create a filter object to pass to the database query
     let filter = {};
@@ -13,6 +13,11 @@ const getAllCourses = async (req, res) => {
     // Filter by category if selected
     if (category) {
       filter.category = category;
+    }
+
+    // Filter by language if selected
+    if (language) {
+      filter.language = language;
     }
 
     // Filter by price if selected
@@ -42,7 +47,8 @@ const getAllCourses = async (req, res) => {
       layout: false, // Set layout to false if you don't want the default layout
       category,     // Pass the applied category filter to the view
       price,         // Pass the applied price filter to the view
-      difficulty     // Pass the applied difficulty filter to the view
+      difficulty,   // Pass the applied difficulty filter to the view
+      language     // Pass the applied language filter to the view
     });
   } catch (error) {
     console.error('Error fetching courses:', error);
