@@ -107,7 +107,7 @@ const viewCourse = async (req, res) => {
     }
 
     // If the user is not enrolled, render the course view page
-    res.render('layouts/enrollview', { 
+    res.render('layouts/enrollView', { 
       course, 
       instructor, 
       sessionUser, 
