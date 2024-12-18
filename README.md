@@ -33,8 +33,12 @@
    ```bash
    npm install
    ```
+4. Connect your mongodb to the project
 
-4. Start the app
+   Add your mongodb URI into mongodb.connect.js
+
+
+5. Start the app
 
     ```bash
     node app.js
