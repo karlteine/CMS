@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const connectToMongoDB = async () => {
     try {
         await mongoose.connect(
-            "mongodb+srv://karlk:QxWJNq7Xg0Obqg0u@cluster0.sfmjq.mongodb.net/", 
+            "<INSERT-MONGODB-URI-HERE", 
             { useNewUrlParser: true }  
         )
     }  catch (err) {
